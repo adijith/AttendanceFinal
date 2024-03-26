@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "AttendanceFinal"
 include(":app")
+include(":admin")
+include(":data")
