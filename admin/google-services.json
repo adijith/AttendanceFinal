@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "394954321384",
+    "firebase_url": "https://attendancefinal-eb01e-default-rtdb.firebaseio.com",
+    "project_id": "attendancefinal-eb01e",
+    "storage_bucket": "attendancefinal-eb01e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394954321384:android:bfae89b15a2832f17c085d",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLviDOH04b24-U7dXocm5NK8QyUHW7Hdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394954321384:android:ba7ac6931888b8a37c085d",
+        "android_client_info": {
+          "package_name": "com.example.attendancefinal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLviDOH04b24-U7dXocm5NK8QyUHW7Hdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
