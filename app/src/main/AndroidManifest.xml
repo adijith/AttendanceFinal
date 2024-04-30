@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AttendanceFinal"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:overrideLibrary="androidx.viewbinding">
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -25,6 +26,10 @@
             android:name=".MainActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name="com.example.admin.MainActivity"
+            android:exported="false"
+            tools:replace="android:exported"/>
     </application>
 
 </manifest>

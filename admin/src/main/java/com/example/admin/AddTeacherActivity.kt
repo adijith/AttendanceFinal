@@ -3,7 +3,9 @@ package com.example.admin
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.admin.databinding.ActivityAddTeacherBinding
 import com.example.data.UserRole
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -18,7 +21,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class AddTeacherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTeacherBinding
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var teacherReference: DatabaseReference
+    private lateinit var userRoleReference: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
 
@@ -29,7 +33,8 @@ class AddTeacherActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().getReference("Teacher information")
+        teacherReference = FirebaseDatabase.getInstance().getReference("Teachers")
+        userRoleReference = FirebaseDatabase.getInstance().getReference("UserRoles")
         progressBar = binding.progressBar
 
         binding.submitBtnTeacher.setOnClickListener {
@@ -62,12 +67,12 @@ class AddTeacherActivity : AppCompatActivity() {
             val teacherId = user.uid
             val teacher = Teacher(user.email ?: "", name, subject)
 
-            // Save teacher information
-            databaseReference.child("Teacher information").child(teacherId).setValue(teacher)
+            // Save teacher information under Teachers node
+            teacherReference.child(teacherId).setValue(teacher)
                 .addOnSuccessListener {
                     // Once teacher information is saved successfully, save role mapping
                     val userRole = UserRole("Teacher")
-                    databaseReference.child("UserRoles").child(teacherId).setValue(userRole)
+                    userRoleReference.child(teacherId).setValue(userRole)
                         .addOnSuccessListener {
                             progressBar.visibility = ProgressBar.GONE
                             binding.teacherName.text.clear()

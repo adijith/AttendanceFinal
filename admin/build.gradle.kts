@@ -1,32 +1,13 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    id ("com.android.library")
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") // Assuming you still need Firebase
 }
 
 android {
     namespace = "com.example.admin"
     compileSdk = 34
 
-    defaultConfig {
-        applicationId = "com.example.admin"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -40,17 +21,11 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.database)
-    implementation(libs.firebase.auth)
-    implementation(project(":data"))
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
+    implementation(libs.androidx.core.ktx) // Assuming this dependency is needed for your data classes
+    implementation(libs.androidx.appcompat) // Optional, for compatibility or Material Design features
+    implementation(libs.material) // Optional, for Material Design components
+    implementation(libs.firebase.database) // Assuming you use Firebase Database (optional)
+    implementation(libs.firebase.auth) // Assuming you use Firebase Authentication (optional)
+    implementation(project(":data")) // Dependency on your data module (assuming it's a library module)
+    testImplementation(libs.junit) // Testing dependencies for your library module (optional)
 }

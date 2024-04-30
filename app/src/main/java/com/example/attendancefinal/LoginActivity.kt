@@ -9,11 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.attendancefinal.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.admin.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -35,9 +31,8 @@ class LoginActivity : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(loginUsername, loginpassword)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "login successful", Toast.LENGTH_SHORT).show()
-                            val intent = Intent().setClassName(this, "com.example.admin.MainActivity")
-
+                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, com.example.admin.MainActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {

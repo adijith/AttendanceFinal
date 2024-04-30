@@ -23,3 +23,4 @@ rootProject.name = "AttendanceFinal"
 include(":app")
 include(":admin")
 include(":data")
+include(":teacher")

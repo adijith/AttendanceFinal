@@ -11,6 +11,9 @@
       <entry key="data">
         <State />
       </entry>
+      <entry key="teacher">
+        <State />
+      </entry>
     </value>
   </component>
 </project>
