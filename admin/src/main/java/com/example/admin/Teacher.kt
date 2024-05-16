@@ -1,7 +1,8 @@
 package com.example.admin
 
-data class Teacher(val emailt:String?=null,
-                   val fname:String?=null,
-                   val subjt:String?=null){
+data class Teacher(val teacherId: String,
+                   val emailt: String,
+                   val fname:String,
+                   val tclass:String?=null){
 
 }

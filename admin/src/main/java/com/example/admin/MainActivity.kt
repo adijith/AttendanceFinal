@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-//
+
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         binding.addSubjectButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, AddSubjectActivity::class.java)
+            val intent = Intent(this@MainActivity, SubjectAllocationActivity::class.java)
+            startActivity(intent)
+        }
+        binding.addClassButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, addClassActivity::class.java)
             startActivity(intent)
         }
     }

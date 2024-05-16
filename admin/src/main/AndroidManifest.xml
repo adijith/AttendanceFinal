@@ -13,7 +13,11 @@
         android:exported="false" />
 
     <activity
-        android:name=".AddSubjectActivity"  android:exported="false">  </activity>
+        android:name=".SubjectAllocationActivity"  android:exported="false"/>
+    <activity
+        android:name=".addClassActivity"  android:exported="false">
+
+    </activity>
 
     <activity
         android:name=".MainActivity"
