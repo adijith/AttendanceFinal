@@ -122,8 +122,10 @@ class SubjectAllocationActivity : AppCompatActivity() {
         val subjectRef = databaseReference.child("$selectedSubjectId/$subjectId")
         subjectRef.setValue(subjectDetails)
 
-        val teacherSubjectsRef = databaseReference.child("Teachers/$teacherCode/subs/$subjectId")
+        val rootReference = FirebaseDatabase.getInstance().reference
+        val teacherSubjectsRef = rootReference.child("Teachers/$teacherCode/subjects/$subjectId")
         teacherSubjectsRef.setValue(true)
+
 
         // Notify user
         Toast.makeText(this, "Subject allocated successfully", Toast.LENGTH_SHORT).show()
