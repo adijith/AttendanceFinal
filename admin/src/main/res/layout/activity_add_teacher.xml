@@ -39,6 +39,15 @@
             android:textSize="32sp"
             android:layout_margin="12dp"/>
         <EditText
+            android:id="@+id/teacher_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:hint="Teacher ID"
+            android:inputType="text"
+            android:padding="6dp"
+            android:layout_margin="6dp"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/email_input_t"
@@ -62,16 +71,6 @@
             android:id="@+id/teacher_name"
             android:background="@drawable/rounded_corner"
             android:hint="full name"
-            android:inputType="text"
-            android:padding="6dp"
-            android:layout_margin="6dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/subject_teachers"
-            android:background="@drawable/rounded_corner"
-            android:hint="subject"
             android:inputType="text"
             android:padding="6dp"
             android:layout_margin="6dp"/>
