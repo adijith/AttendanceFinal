@@ -124,7 +124,7 @@ class SubjectAllocationActivity : AppCompatActivity() {
 
         val rootReference = FirebaseDatabase.getInstance().reference
         val teacherSubjectsRef = rootReference.child("Teachers/$teacherCode/subjects/$subjectId")
-        teacherSubjectsRef.setValue(true)
+        teacherSubjectsRef.setValue(selectedSubjectId)
 
 
         // Notify user
