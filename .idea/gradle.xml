@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/admin" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/student" />
             <option value="$PROJECT_DIR$/teacher" />
           </set>
         </option>

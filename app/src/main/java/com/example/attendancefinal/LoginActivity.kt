@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.attendancefinal.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.example.admin.MainActivity
+import com.example.student.StudentMainActivity
 import com.example.teacher.ClassTeacherMainActivity
 import com.example.teacher.TeacherMainActivity
 import com.google.firebase.database.FirebaseDatabase
@@ -46,56 +47,55 @@ class LoginActivity : AppCompatActivity() {
                                             val role = dataSnapshot.child("uid").getValue(String::class.java)
 
                                             if (role == "Teacher") {
-                                                val teachersReference = FirebaseDatabase.getInstance().getReference("Teachers")
-                                                teachersReference.child(uid).child("tclass").get().addOnSuccessListener { classSnapshot ->
+                                                val teachersReference =
+                                                    FirebaseDatabase.getInstance()
+                                                        .getReference("Teachers")
+                                                teachersReference.child(uid).child("tclass").get()
+                                                    .addOnSuccessListener { classSnapshot ->
                                                         if (classSnapshot.exists()) {
-                                                            val tclass = classSnapshot.getValue(String::class.java)
+                                                            val tclass =
+                                                                classSnapshot.getValue(String::class.java)
                                                             if (tclass != "none") {
                                                                 // If the teacher has a class, start the corresponding activity
-                                                                val intent = Intent(this, ClassTeacherMainActivity::class.java)
+                                                                val intent = Intent(
+                                                                    this,
+                                                                    ClassTeacherMainActivity::class.java
+                                                                )
                                                                 startActivity(intent)
                                                             } else {
-                                                                val intent = Intent(this, TeacherMainActivity::class.java)
+                                                                val intent = Intent(
+                                                                    this,
+                                                                    TeacherMainActivity::class.java
+                                                                )
                                                                 startActivity(intent)
                                                             }
                                                         }
                                                     }
-                                            }else if (role == "Admin") {
-                                                            val intent = Intent(
-                                                                this,
-                                                                MainActivity::class.java
-                                                            )
-                                                            startActivity(intent)
-                                                        } else if (role == null) {
-                                                            // Handle invalid role or no role found
-                                                            Toast.makeText(
-                                                                this,
-                                                                "Invalid role or role not found",
-                                                                Toast.LENGTH_SHORT
-                                                            ).show()
-                                                        } else {
-                                                            Toast.makeText(
-                                                                this@LoginActivity,
-                                                                "login failed",
-                                                                Toast.LENGTH_SHORT
-                                                            )
-                                                                .show()
-                                                        }
-
-                                                    } else {
-                                                    Toast.makeText(
-                                                        this@LoginActivity,
-                                                        "all fields mandatory",
-                                                        Toast.LENGTH_SHORT
-                                                    )
-                                                        .show()
-                                                }
-
+                                            } else if (role == "Student") {
+                                                val intent = Intent(this, StudentMainActivity::class.java)
+                                                startActivity(intent)
+                                            } else if (role == "Admin") {
+                                                val intent = Intent(this, MainActivity::class.java)
+                                                startActivity(intent)
+                                            } else if (role == null) {
+                                                // Handle invalid role or no role found
+                                                Toast.makeText(this, "Invalid role or role not found", Toast.LENGTH_SHORT).show()
                                             }
                                         }
-                                    }
+                                }
+                            } else {
+                                Toast.makeText(this@LoginActivity, "login failed", Toast.LENGTH_SHORT).show()
                             }
+                        } else {
+                            Toast.makeText(this@LoginActivity, "all fields mandatory", Toast.LENGTH_SHORT).show()
                         }
                     }
+            } else {
+                Toast.makeText(this@LoginActivity, "all fields mandatory", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
             }
         }
