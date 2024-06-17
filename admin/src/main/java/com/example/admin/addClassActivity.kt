@@ -12,6 +12,8 @@ class addClassActivity : AppCompatActivity() {
     private lateinit var teacherRef: DatabaseReference
     private lateinit var binding: ActivityAddClassBinding
     private lateinit var subjectsRef: DatabaseReference
+    private lateinit var scheduleRef: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +23,7 @@ class addClassActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         teacherRef = database.getReference("Teachers")
         subjectsRef = database.getReference("Subjects")
+        scheduleRef = database.getReference("Schedule")
 
         binding.submitButton.setOnClickListener {
             val subject = binding.addClass.text.toString().trim()
@@ -31,10 +34,12 @@ class addClassActivity : AppCompatActivity() {
 
                 // Create a new child node under "students" with subject as the key
                 val subjectRef = attendanceRef.child(subject)
+                scheduleRef.child(subject).setValue(true)
 
                 // Set the teacherUid as values under the subject node
                 subjectRef.child("teacherUid").setValue(selectedTeacherTriple.third)
                 teacherRef.child(selectedTeacherTriple.third).child("tclass").setValue(subject)
+
 
                 subjectsRef.child(subject).setValue(true)
                     .addOnSuccessListener {

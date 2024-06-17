@@ -2,7 +2,32 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="admin">
+        <State />
+      </entry>
       <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\USER\.android\avd\Pixel_3a_XL_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-06-10T21:32:55.261284700Z" />
+        </State>
+      </entry>
+      <entry key="data">
+        <State />
+      </entry>
+      <entry key="student">
+        <State />
+      </entry>
+      <entry key="teacher">
         <State />
       </entry>
     </value>

@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":admin"))
     implementation(project(":data"))
     implementation(project(":teacher"))
+    implementation(project(":student"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
