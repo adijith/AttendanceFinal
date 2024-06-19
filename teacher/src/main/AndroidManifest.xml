@@ -21,6 +21,10 @@
             android:exported="false"
             android:theme="@style/Theme.AttendanceFinal" />
         <activity
+            android:name=".SubAttenViewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
             android:name=".TeacherMainActivity"
             android:exported="false"
             android:theme="@style/Theme.AttendanceFinal" />
