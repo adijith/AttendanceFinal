@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="SubAttenViewActivity">
+        <State />
+      </entry>
       <entry key="admin">
         <State />
       </entry>

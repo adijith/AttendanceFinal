@@ -16,7 +16,7 @@ import com.google.firebase.database.ValueEventListener
 data class StudentAttendance(
     val studentInfo: StudentInfo,
     val attendancePercentage: Double,
-    val subjectAttendance: Map<String, Double> // Maps subject ID to attendance percentage
+    val subjectAttendance: Map<String, Double> // Maps subject name to attendance percentage
 )
 
 class AttenViewActivity : AppCompatActivity() {
@@ -44,6 +44,7 @@ class AttenViewActivity : AppCompatActivity() {
 
                     if (tclass != null) {
                         Log.d("AttenViewActivity", "Teacher's class: $tclass")
+                        binding.classYearNode.text = "Year: $tclass"
 
                         // Fetch subjects
                         fetchSubjects(tclass) { subjectMap ->
@@ -179,13 +180,13 @@ class AttenViewActivity : AppCompatActivity() {
                     var totalClasses = 0
                     var presentCount = 0
 
-                    for ((subjectId, _) in subjectMap) {
+                    for ((subjectId, subjectName) in subjectMap) {
                         val subjectSnapshot = studentSnapshot.child(subjectId)
                         val totalSubjectClasses = subjectSnapshot.childrenCount.toInt()
                         val presentSubjectClasses =
                             subjectSnapshot.children.count { it.value == "Present" }
 
-                        subjectAttendance[subjectId] = if (totalSubjectClasses > 0) {
+                        subjectAttendance[subjectName] = if (totalSubjectClasses > 0) {
                             (presentSubjectClasses.toDouble() / totalSubjectClasses.toDouble()) * 100
                         } else {
                             0.0
@@ -225,8 +226,50 @@ class AttenViewActivity : AppCompatActivity() {
         studentAttendanceList: List<StudentAttendance>,
         subjectMap: Map<String, String>
     ) {
-        // Add table header first
-        addTableHeader(subjectMap)
+        val tableLayout = binding.tableLayout
+
+        // Clear existing rows except headers
+        tableLayout.removeViews(1, tableLayout.childCount - 1)
+
+        // Display header row dynamically with subjects
+        val headerRow = TableRow(this)
+
+        // Roll Number TextView
+        val rollNumberTextView = TextView(this).apply {
+            text = "Roll Number"
+            setTextStyle(this)
+            setWeight(this, 1f)
+        }
+        headerRow.addView(rollNumberTextView)
+
+        // Student Name TextView
+        val nameTextView = TextView(this).apply {
+            text = "Student Name"
+            setTextStyle(this)
+            setWeight(this, 2f)
+        }
+        headerRow.addView(nameTextView)
+
+        // Overall Attendance Percentage TextView
+        val overallAttendanceTextView = TextView(this).apply {
+            text = "Overall Attendance %"
+            setTextStyle(this)
+            setWeight(this, 1f)
+        }
+        headerRow.addView(overallAttendanceTextView)
+
+        // Subject-wise Attendance Percentages
+        for ((_, subjectName) in subjectMap) {
+            val subjectTextView = TextView(this).apply {
+                text = subjectName
+                setTextStyle(this)
+                setWeight(this, 1f)
+            }
+            headerRow.addView(subjectTextView)
+        }
+
+        // Add the header row to the table layout
+        tableLayout.addView(headerRow)
 
         // Display each student's attendance data
         for (studentAttendance in studentAttendanceList) {
@@ -234,73 +277,65 @@ class AttenViewActivity : AppCompatActivity() {
         }
     }
 
-    private fun addTableHeader(subjectMap: Map<String, String>) {
-        val headerRow = TableRow(this)
-
-        // Add static headers
-        val headers = listOf( "Roll Number", "Student Name", "Attendance %")
-        for (header in headers) {
-            val textView = TextView(this).apply {
-                text = header
-                setTypeface(null, android.graphics.Typeface.BOLD)
-                layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
-            }
-            headerRow.addView(textView)
-        }
-
-        // Add dynamic subject headers
-        for ((_, subjectName) in subjectMap) {
-            val subjectTextView = TextView(this).apply {
-                text = subjectName
-                setTypeface(null, android.graphics.Typeface.BOLD)
-                layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
-            }
-            headerRow.addView(subjectTextView)
-        }
-
-        binding.tableLayout.addView(headerRow)
-    }
-
     private fun displayAttendanceStats(
         studentAttendance: StudentAttendance,
         subjectMap: Map<String, String>
     ) {
+        val tableLayout = binding.tableLayout
+
+        // Create a new row
         val row = TableRow(this)
 
         // Roll Number TextView
         val rollNumberTextView = TextView(this).apply {
             text = studentAttendance.studentInfo.roleNumber
-            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+            setTextStyle(this)
+            setWeight(this, 1f)
         }
         row.addView(rollNumberTextView)
 
         // Student Name TextView
         val nameTextView = TextView(this).apply {
             text = studentAttendance.studentInfo.name
-            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f)
+            setTextStyle(this)
+            setWeight(this, 2f)
         }
         row.addView(nameTextView)
 
-        // Attendance Percentage TextView
-        val percentageTextView = TextView(this).apply {
+        // Overall Attendance Percentage TextView
+        val overallAttendanceTextView = TextView(this).apply {
             text = "%.2f%%".format(studentAttendance.attendancePercentage)
-            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+            setTextStyle(this)
+            setWeight(this, 1f)
         }
-        row.addView(percentageTextView)
+        row.addView(overallAttendanceTextView)
 
-        // Add dynamic subject attendance percentages
+        // Subject-wise Attendance Percentages
         for ((subjectId, _) in subjectMap) {
+            val subjectAttendance = studentAttendance.subjectAttendance[subjectId] ?: 0.0
+
             val subjectAttendanceTextView = TextView(this).apply {
-                val subjectAttendance = studentAttendance.subjectAttendance[subjectId] ?: 0.0
                 text = "%.2f%%".format(subjectAttendance)
-                layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+                setTextStyle(this)
+                setWeight(this, 1f)
             }
             row.addView(subjectAttendanceTextView)
         }
 
-        // Log the row addition for debugging
-        Log.d("DisplayAttendance", "Adding row: $row")
+        // Add the row to the table layout
+        tableLayout.addView(row)
+    }
 
-        binding.tableLayout.addView(row)
+    private fun setTextStyle(textView: TextView) {
+        textView.apply {
+            textSize = 16f
+            setPadding(8, 8, 8, 8)
+            setTextAppearance(android.R.style.TextAppearance_Material_Body1)
+            gravity = android.view.Gravity.CENTER
+        }
+    }
+
+    private fun setWeight(textView: TextView, weight: Float) {
+        textView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, weight)
     }
 }

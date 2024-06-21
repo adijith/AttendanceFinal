@@ -18,6 +18,9 @@
             android:name=".ViewSubAttendanceActivity"
             android:exported="false" />
         <activity
+            android:name=".StudentProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".StudentMainActivity"
             android:exported="false"
             android:theme="@style/Theme.AttendanceFinal" />

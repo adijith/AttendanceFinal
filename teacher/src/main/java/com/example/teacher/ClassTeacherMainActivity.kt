@@ -31,5 +31,10 @@ class ClassTeacherMainActivity : AppCompatActivity() {
             val intent = Intent(this@ClassTeacherMainActivity, AttenViewActivity::class.java)
             startActivity(intent)
         }
+        binding.attendanceViewingButton2.setOnClickListener {
+            val intent = Intent(this@ClassTeacherMainActivity, SubAttenViewActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

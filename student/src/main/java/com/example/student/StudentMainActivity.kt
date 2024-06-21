@@ -24,6 +24,18 @@ class StudentMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.addStudentDetailsButton.setOnClickListener {
+            // Start the ViewAttendanceActivity
+            val intent = Intent(this@StudentMainActivity, StudentInfoActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileButton.setOnClickListener {
+            // Start the ViewAttendanceActivity
+            val intent = Intent(this@StudentMainActivity, StudentProfileActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.logoutButton.setOnClickListener {
             // Sign out user from Firebase Authentication
             firebaseAuth.signOut()

@@ -5,18 +5,84 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Heading for Class Attendance -->
+    <TextView
+        android:id="@+id/classAttendanceHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class Attendance"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Display Class/Year Node -->
+    <TextView
+        android:id="@+id/classYearNode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class/Year Node: "
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
+
     <!-- Table for displaying attendance -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1,2,3">
+            android:layout_height="match_parent"
+            android:stretchColumns="0,1,2">
 
-            <!-- Header row will be added dynamically -->
+            <!-- Header row -->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CCCCCC">
+
+                <!-- Roll Number -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Roll Number"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:layout_weight="1" />
+
+                <!-- Student Name -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Student Name"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:layout_weight="2" />
+
+                <!-- Overall Attendance -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Overall Attendance %"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:layout_weight="1" />
+
+                <!-- Subject-wise Attendance -->
+                <!-- Dynamically add subject columns -->
+                <!-- Example: -->
+                <!-- <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Subject 1"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:layout_weight="1" /> -->
+
+            </TableRow>
 
         </TableLayout>
     </ScrollView>

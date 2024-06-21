@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Heading -->
+    <TextView
+        android:id="@+id/headingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject Attendance"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Subject Label -->
+    <TextView
+        android:id="@+id/subjectLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject:"
+        android:textSize="18sp"
+        android:layout_below="@id/headingTextView"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Subject Spinner -->
+    <Spinner
+        android:id="@+id/subjectSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/subjectLabel"
+        android:layout_below="@id/headingTextView"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Student Label -->
+    <TextView
+        android:id="@+id/studentLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student:"
+        android:textSize="18sp"
+        android:layout_below="@id/subjectSpinner"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Student Spinner -->
+    <Spinner
+        android:id="@+id/studentSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/studentLabel"
+        android:layout_below="@id/subjectSpinner"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_below="@id/studentSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"/>
+
+    <!-- View Attendance Button -->
+    <Button
+        android:id="@+id/viewAttendanceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Attendance"
+        android:layout_toEndOf="@id/submitButton"
+        android:layout_alignBaseline="@id/submitButton"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"/>
+
+    <!-- Attendance Table -->
+    <TableLayout
+        android:id="@+id/attendanceTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewAttendanceButton"
+        android:layout_marginTop="16dp"
+        android:stretchColumns="1" />
+
+</RelativeLayout>
