@@ -1,46 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#373447"
     android:padding="16dp">
 
-    <!-- Email input field -->
-    <EditText
-        android:id="@+id/emailEditText"
+    <!-- Container to hold and center the inner LinearLayout -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        android:maxLines="1" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- Password input field -->
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:maxLines="1" />
+        <!-- Email input field -->
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/mailwhite"
+            android:drawablePadding="16dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
-    <!-- Login button -->
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="login button"
-        android:layout_marginTop="16dp"/>
+        <!-- Password input field -->
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/keywhite"
+            android:drawablePadding="16dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
-    <!-- Optional: Sign Up/Registration Link -->
-    <TextView
-        android:id="@+id/signUpText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sign up"
-        android:textColor="#6200EE"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:focusable="true" />
+        <!-- Login button -->
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Login" />
 
-</LinearLayout>
+        <!-- Optional: Sign Up/Registration Link -->
+        <Button
+            android:id="@+id/signUpText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Create an account" />
+
+    </LinearLayout>
+</RelativeLayout>

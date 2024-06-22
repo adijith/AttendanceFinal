@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.logout.setOnClickListener {
-            val intent = Intent(this@MainActivity, AddTeacherActivity::class.java)
+            val intent = Intent(this@MainActivity, SubjectAllocationActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, SubjectAllocationActivity::class.java)
             startActivity(intent)
         }
+
+        binding.addTeacher.setOnClickListener {
+            val intent = Intent(this@MainActivity,AddTeacherActivity::class.java )
+            startActivity(intent)
+        }
+
         binding.addClassButton.setOnClickListener {
             val intent = Intent(this@MainActivity, addClassActivity::class.java)
             startActivity(intent)

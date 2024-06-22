@@ -92,7 +92,7 @@ class addClassActivity : AppCompatActivity() {
                 // Update spinner adapter with teacher names and IDs
                 val adapter = ArrayAdapter(
                     this@addClassActivity,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_item,
                     teacherList
                 )
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
