@@ -3,18 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingBottom="36dp"
     android:layout_height="match_parent"
+    android:background="#373447"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/add_subject_button"
-        app:srcCompat="@drawable/home"
+        app:srcCompat="@drawable/homepage"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
@@ -22,21 +24,41 @@
         android:id="@+id/add_subject_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:layout_marginBottom="68dp"
         android:text="Add Subject"
-        app:layout_constraintBottom_toTopOf="@+id/add_class_button"  app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/add_class_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        tools:layout_editor_absoluteY="440dp" />
+        />
+
 
     <Button
         android:id="@+id/add_class_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Add Class"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/add_teacher"  app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:layout_editor_absoluteY="487dp"
+        android:layout_margin="12dp"
+        />
+
+    <Button
+        android:id="@+id/add_teacher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add teacher"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/logout"  app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        tools:layout_editor_absoluteY="487dp" />
+        tools:layout_editor_absoluteY="487dp"
+        android:layout_margin="12dp"
+        />
 
     <Button
         android:id="@+id/logout"
@@ -47,6 +69,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        tools:layout_editor_absoluteY="534dp"/>
+        tools:layout_editor_absoluteY="534dp"
+        android:layout_margin="12dp"
+
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

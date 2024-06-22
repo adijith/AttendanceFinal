@@ -44,7 +44,7 @@ class SubjectAllocationActivity : AppCompatActivity() {
                 }
                 val adapter = ArrayAdapter(
                     this@SubjectAllocationActivity,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_item,
                     teacherList
                 )
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -74,7 +74,7 @@ class SubjectAllocationActivity : AppCompatActivity() {
 
                 val subjectIdAdapter = ArrayAdapter(
                     this@SubjectAllocationActivity,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_item,
                     subjectList
                 )
                 subjectIdAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

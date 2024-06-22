@@ -7,22 +7,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:layout_margin="16dp"
+    android:background="#373447"
     tools:context=".AddTeacherActivity">
-
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/cuceknew"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ATTENDANCE TRACKING SYSTEM"
+        android:text="TEACHER DETAILS"
         android:gravity="center"
-        android:textSize="22sp"
+        android:textColor="@color/white"
+android:layout_marginTop="30dp"
         android:textStyle="bold"
-        android:letterSpacing="0.07"/>
+        android:textSize="32sp"
+        />
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:src="@drawable/college"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,26 +32,38 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
+
+
+        <EditText
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="TEACHER DETAILS"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="32sp"
-            android:layout_margin="12dp"/>
+            android:id="@+id/teacher_name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:background="@drawable/rounded_corner"
+            android:hint="full name"
+            android:maxLines="1"
+            android:inputType="text"
+            android:padding="6dp"
+            android:layout_margin="6dp"/>
+
         <EditText
             android:id="@+id/teacher_id"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:background="@drawable/rounded_corner"
             android:hint="Teacher ID"
+            android:maxLines="1"
             android:inputType="text"
             android:padding="6dp"
             android:layout_margin="6dp"/>
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:id="@+id/email_input_t"
             android:background="@drawable/rounded_corner"
             android:hint="Email"
@@ -57,23 +71,18 @@
             android:padding="6dp"
             android:layout_margin="6dp"/>
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:id="@+id/password_input_t"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:background="@drawable/rounded_corner"
             android:hint="Password"
+            android:maxLines="1"
             android:inputType="textPassword"
             android:padding="6dp"
             android:layout_margin="6dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/teacher_name"
-            android:background="@drawable/rounded_corner"
-            android:hint="full name"
-            android:inputType="text"
-            android:padding="6dp"
-            android:layout_margin="6dp"/>
+
 
         <Button
             android:layout_width="match_parent"
@@ -81,7 +90,7 @@
             android:id="@+id/submit_btn_teacher"
             android:text="ADD TEACHER"
             android:layout_margin="12dp"
-            android:padding="12dp"/>
+            />
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="60dp"

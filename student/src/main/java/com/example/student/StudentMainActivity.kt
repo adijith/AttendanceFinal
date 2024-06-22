@@ -2,7 +2,10 @@ package com.example.student
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.student.databinding.ActivityStudentMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -24,28 +27,11 @@ class StudentMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.addStudentDetailsButton.setOnClickListener {
-            // Start the ViewAttendanceActivity
+        // Set click listener for Modify Profile button
+        binding.modifyProfileButton.setOnClickListener {
+            // Start the ModifyProfileActivity
             val intent = Intent(this@StudentMainActivity, StudentInfoActivity::class.java)
             startActivity(intent)
-        }
-
-        binding.profileButton.setOnClickListener {
-            // Start the ViewAttendanceActivity
-            val intent = Intent(this@StudentMainActivity, StudentProfileActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.logoutButton.setOnClickListener {
-            // Sign out user from Firebase Authentication
-            firebaseAuth.signOut()
-
-            val intent = Intent().apply {
-                setClassName("com.example.attendancefinal", "com.example.attendancefinal.LoginActivity")
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-            startActivity(intent)
-            finish() // Finish current activity to prevent going back on logout
         }
     }
 }
