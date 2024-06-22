@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teacher.databinding.ActivityClassTeacherMainBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.example.teacher.AddStudentActivity
 
 class ClassTeacherMainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClassTeacherMainBinding
@@ -46,6 +45,18 @@ class ClassTeacherMainActivity : AppCompatActivity() {
             val intent = Intent(this@ClassTeacherMainActivity, SubAttenViewActivity::class.java)
             startActivity(intent)
         }
+    binding.logout.setOnClickListener {
+
+        firebaseAuth.signOut()
+
+        val intent = Intent().apply {
+            setClassName("com.example.attendancefinal", "com.example.attendancefinal.LoginActivity")
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        finish()
+    }
+
 
     }
 }

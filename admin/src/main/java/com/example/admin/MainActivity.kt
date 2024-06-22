@@ -20,7 +20,12 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.logout.setOnClickListener {
-            val intent = Intent(this@MainActivity, SubjectAllocationActivity::class.java)
+            firebaseAuth.signOut()
+
+            val intent = Intent().apply {
+                setClassName("com.example.attendancefinal", "com.example.attendancefinal.LoginActivity")
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
             startActivity(intent)
             finish()
         }
