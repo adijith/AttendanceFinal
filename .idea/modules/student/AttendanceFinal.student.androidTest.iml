@@ -42,10 +42,18 @@
     <output-test url="file://$MODULE_DIR$/../../../student/build/intermediates/javac/debugAndroidTest/compileDebugAndroidTestJavaWithJavac/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../student/build/generated/ap_generated_sources/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../student/build/generated/ap_generated_sources/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../student/build/generated/res/resValues/androidTest/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../student/build/generated/res/resValues/androidTest/debug" type="java-test-resource" />
+    </content>
     <content url="file://$MODULE_DIR$/../../../student/build/generated/res/resValues/androidTest/debug" />
     <content url="file://$MODULE_DIR$/../../../student/src/androidTest">
       <sourceFolder url="file://$MODULE_DIR$/../../../student/src/androidTest/java" isTestSource="true" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../student/src/androidTest">
+      <sourceFolder url="file://$MODULE_DIR$/../../../student/src/androidTest/java" isTestSource="true" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../student/src/androidTestDebug" />
     <content url="file://$MODULE_DIR$/../../../student/src/androidTestDebug" />
     <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
