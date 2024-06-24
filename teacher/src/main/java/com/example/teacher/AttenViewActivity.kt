@@ -1,5 +1,6 @@
 package com.example.teacher
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.TableRow
@@ -239,6 +240,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = "Roll Number"
             setTextStyle(this)
             setWeight(this, 1f)
+            setTextColor(Color.WHITE)
         }
         headerRow.addView(rollNumberTextView)
 
@@ -247,6 +249,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = "Student Name"
             setTextStyle(this)
             setWeight(this, 2f)
+            setTextColor(Color.WHITE)
         }
         headerRow.addView(nameTextView)
 
@@ -255,6 +258,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = "Overall Attendance %"
             setTextStyle(this)
             setWeight(this, 1f)
+            setTextColor(Color.WHITE)
         }
         headerRow.addView(overallAttendanceTextView)
 
@@ -264,6 +268,9 @@ class AttenViewActivity : AppCompatActivity() {
                 text = subjectName
                 setTextStyle(this)
                 setWeight(this, 1f)
+                setTextColor(Color.WHITE)
+
+
             }
             headerRow.addView(subjectTextView)
         }
@@ -291,6 +298,8 @@ class AttenViewActivity : AppCompatActivity() {
             text = studentAttendance.studentInfo.roleNumber
             setTextStyle(this)
             setWeight(this, 1f)
+            setTextColor(Color.WHITE)
+
         }
         row.addView(rollNumberTextView)
 
@@ -299,6 +308,8 @@ class AttenViewActivity : AppCompatActivity() {
             text = studentAttendance.studentInfo.name
             setTextStyle(this)
             setWeight(this, 2f)
+            setTextColor(Color.WHITE)
+
         }
         row.addView(nameTextView)
 
@@ -307,6 +318,8 @@ class AttenViewActivity : AppCompatActivity() {
             text = "%.2f%%".format(studentAttendance.attendancePercentage)
             setTextStyle(this)
             setWeight(this, 1f)
+            setTextColor(Color.WHITE)
+
         }
         row.addView(overallAttendanceTextView)
 
@@ -318,6 +331,8 @@ class AttenViewActivity : AppCompatActivity() {
                 text = "%.2f%%".format(subjectAttendance)
                 setTextStyle(this)
                 setWeight(this, 1f)
+                setTextColor(Color.WHITE)
+
             }
             row.addView(subjectAttendanceTextView)
         }
@@ -330,6 +345,7 @@ class AttenViewActivity : AppCompatActivity() {
         textView.apply {
             textSize = 16f
             setPadding(8, 8, 8, 8)
+            setTextColor(Color.WHITE)
             setTextAppearance(android.R.style.TextAppearance_Material_Body1)
             gravity = android.view.Gravity.CENTER
         }

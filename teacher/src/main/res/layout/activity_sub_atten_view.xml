@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="#373447"
+    >
 
     <!-- Heading -->
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Subject Attendance"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
@@ -22,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Subject:"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_below="@id/headingTextView"
         android:layout_marginEnd="8dp"
@@ -32,6 +35,7 @@
         android:id="@+id/subjectSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_toEndOf="@id/subjectLabel"
         android:layout_below="@id/headingTextView"
         android:layout_marginBottom="16dp"/>
@@ -42,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Student:"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_below="@id/subjectSpinner"
         android:layout_marginEnd="8dp"
@@ -63,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
+        android:layout_marginLeft="80dp"
         android:layout_below="@id/studentSpinner"
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp"/>

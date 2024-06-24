@@ -4,35 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#373447"
     tools:context=".StudentProfileActivity">
-
-    <!-- Student Profile Heading -->
 
     <!-- Profile Icon (ic_profile2) -->
     <TextView
         android:id="@+id/profileHeadingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
         android:layout_marginTop="16dp"
         android:padding="16dp"
         android:text="Student Profile"
         android:textSize="24sp"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <ImageView
-        android:id="@+id/profileIconImageView"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:src="@drawable/ic_profile2"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/profileHeadingTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"
-        android:contentDescription="@string/profile_icon_description" />
+        app:srcCompat="@drawable/profile" />
 
     <!-- Name -->
     <TextView
@@ -40,11 +39,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name: "
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileIconImageView"
-        android:padding="8dp"/>
+        />
 
     <!-- Gender -->
     <TextView
@@ -53,10 +55,13 @@
         android:layout_height="wrap_content"
         android:text="Gender: "
         android:textSize="18sp"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintTop_toBottomOf="@id/nameTextView"
-        android:padding="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <!-- Email -->
     <TextView
@@ -66,9 +71,12 @@
         android:text="Email: "
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintTop_toBottomOf="@id/genderTextView"
-        android:padding="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <!-- Phone -->
     <TextView
@@ -78,9 +86,12 @@
         android:text="Phone: "
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintTop_toBottomOf="@id/emailTextView"
-        android:padding="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
     <!-- Class (sclass) -->
     <TextView
@@ -90,9 +101,12 @@
         android:text="Class: "
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintTop_toBottomOf="@id/phoneTextView"
-        android:padding="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <!-- Role Number (studentId) -->
     <TextView
@@ -101,9 +115,12 @@
         android:layout_height="wrap_content"
         android:text="Role Number: "
         android:textSize="18sp"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="12dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintTop_toBottomOf="@id/classTextView"
-        android:padding="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+      />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

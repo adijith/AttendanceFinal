@@ -123,7 +123,7 @@ class SubAttenViewActivity : AppCompatActivity() {
     }
 
     private fun displaySubjectsInSpinner(subjectNames: List<String>) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, subjectNames)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, subjectNames)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         subjectSpinner.adapter = adapter
     }
@@ -188,7 +188,7 @@ class SubAttenViewActivity : AppCompatActivity() {
     }
 
     private fun displayStudentsInSpinner(studentDetails: List<String>) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, studentDetails)
+        val adapter = ArrayAdapter(this, R.layout.spinner_item, studentDetails)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         studentSpinner.adapter = adapter
 
@@ -238,7 +238,7 @@ class SubAttenViewActivity : AppCompatActivity() {
             text = "Date"
             setPadding(16, 16, 16, 16)
             textSize = 16f
-            setTextColor(resources.getColor(android.R.color.black))
+            setTextColor(resources.getColor(android.R.color.white))
             setBackgroundColor(resources.getColor(android.R.color.darker_gray))
         }
         headerRow.addView(dateHeader)
@@ -247,7 +247,7 @@ class SubAttenViewActivity : AppCompatActivity() {
             text = "Status"
             setPadding(16, 16, 16, 16)
             textSize = 16f
-            setTextColor(resources.getColor(android.R.color.black))
+            setTextColor(resources.getColor(android.R.color.white))
             setBackgroundColor(resources.getColor(android.R.color.darker_gray))
         }
         headerRow.addView(statusHeader)
@@ -263,7 +263,7 @@ class SubAttenViewActivity : AppCompatActivity() {
                 text = record.date
                 setPadding(16, 16, 16, 16)
                 textSize = 14f
-                setTextColor(resources.getColor(android.R.color.black))
+                setTextColor(resources.getColor(android.R.color.white))
             }
             row.addView(dateText)
 
@@ -271,7 +271,7 @@ class SubAttenViewActivity : AppCompatActivity() {
                 text = record.status
                 setPadding(16, 16, 16, 16)
                 textSize = 14f
-                setTextColor(resources.getColor(android.R.color.black))
+                setTextColor(resources.getColor(android.R.color.white))
             }
             row.addView(statusText)
 
