@@ -85,11 +85,14 @@ class ViewStudentsActivity : AppCompatActivity() {
 
         studentRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val studentName = dataSnapshot.child("name").getValue(String::class.java) ?: "Unknown"
-                val studentRollNumber = dataSnapshot.child("studentId").getValue(String::class.java) ?: "N/A"
+                val isActive = dataSnapshot.child("active").getValue(Boolean::class.java) ?: false
+                if (isActive) {
+                    val studentName = dataSnapshot.child("name").getValue(String::class.java) ?: "Unknown"
+                    val studentRollNumber = dataSnapshot.child("studentId").getValue(String::class.java) ?: "N/A"
 
-                // Add student details to the table
-                addStudentRow(studentRollNumber, studentName, studentId)
+                    // Add student details to the table
+                    addStudentRow(studentRollNumber, studentName, studentId)
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

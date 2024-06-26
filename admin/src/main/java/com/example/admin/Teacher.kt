@@ -3,6 +3,7 @@ package com.example.admin
 data class Teacher(val teacherId: String,
                    val emailt: String,
                    val fname:String,
-                   val tclass:String?=null){
+                   val tclass:String?=null,
+                   val active: Boolean = true){
 
 }

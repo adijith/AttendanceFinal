@@ -141,15 +141,17 @@ class AttenViewActivity : AppCompatActivity() {
         for (uid in studentUids) {
             studentsRef.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(studentSnapshot: DataSnapshot) {
-                    val studentName = studentSnapshot.child("name").getValue(String::class.java) ?: "Unknown Name"
-                    val roleNumber = studentSnapshot.child("studentId").getValue(String::class.java) ?: "Unknown Role Number"
-                    studentInfoList.add(StudentInfo(uid, roleNumber, studentName))
-                    processedCount++
+                        val studentName = studentSnapshot.child("name").getValue(String::class.java)
+                            ?: "Unknown Name"
+                        val roleNumber = studentSnapshot.child("studentId").getValue(String::class.java)
+                                ?: "Unknown Role Number"
+                        studentInfoList.add(StudentInfo(uid, roleNumber, studentName))
+                        processedCount++
 
-                    if (processedCount == studentUids.size) {
-                        // Once all names are fetched, call the callback with the list of student IDs and names
-                        callback(studentInfoList)
-                    }
+                        if (processedCount == studentUids.size) {
+                            // Once all names are fetched, call the callback with the list of student IDs and names
+                            callback(studentInfoList)
+                        }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -325,7 +327,7 @@ class AttenViewActivity : AppCompatActivity() {
             val subjectAttendance = studentAttendance.subjectAttendance[subjectId] ?: 0.0
 
             val subjectAttendanceTextView = TextView(this).apply {
-                text = "%.2f%%".format(subjectAttendance)
+                text = subjectAttendance?.let { "%.2f%%".format(it) } ?: "0.00%"
                 setTextStyle(this)
                 setWeight(this, 1f)
                 setTextColor(Color.BLACK)

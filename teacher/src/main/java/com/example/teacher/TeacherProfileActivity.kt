@@ -43,7 +43,7 @@ class TeacherProfileActivity : AppCompatActivity() {
                 if (snapshot.exists()) {
                     val name = snapshot.child("fname").getValue(String::class.java)
                     val gender = snapshot.child("gender").getValue(String::class.java)
-                    val email = snapshot.child("email").getValue(String::class.java)
+                    val email = snapshot.child("emailt").getValue(String::class.java)
                     val phone = snapshot.child("phone").getValue(String::class.java)
                     val qualifications = snapshot.child("qualifications").getValue(String::class.java)
                     val tclass = snapshot.child("tclass").getValue(String::class.java)

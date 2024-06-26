@@ -6,11 +6,11 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.example.admin.databinding.ActivitySubjectAllocationBinding // Update with your package name
+import com.example.admin.databinding.ActivitySubjectAllocationBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class SubjectAllocationActivity : AppCompatActivity() {
@@ -32,13 +32,16 @@ class SubjectAllocationActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val teacherList = mutableListOf<Triple<String, String, String>>()
                 for (snapshot in dataSnapshot.children) {
-                    val teacherId = snapshot.child("teacherId").getValue(String::class.java)
-                    val teacherName = snapshot.child("fname").getValue(String::class.java)
-                    val teacherUid = snapshot.key ?: continue
-                    teacherName?.let {
-                        teacherId?.let { id ->
-                            val teacherInfo = Triple(teacherName, teacherId, teacherUid)
-                            teacherList.add(teacherInfo)
+                    val isActive = snapshot.child("active").getValue(Boolean::class.java) ?: false
+                    if (isActive) {
+                        val teacherId = snapshot.child("teacherId").getValue(String::class.java)
+                        val teacherName = snapshot.child("fname").getValue(String::class.java)
+                        val teacherUid = snapshot.key ?: continue
+                        teacherName?.let {
+                            teacherId?.let { id ->
+                                val teacherInfo = Triple(teacherName, teacherId, teacherUid)
+                                teacherList.add(teacherInfo)
+                            }
                         }
                     }
                 }

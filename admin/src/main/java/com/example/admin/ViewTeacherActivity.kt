@@ -41,13 +41,19 @@ class ViewTeacherActivity : AppCompatActivity() {
         teachersRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (teacherSnapshot in dataSnapshot.children) {
-                    val teacherUid = teacherSnapshot.key
-                    val teacherName = teacherSnapshot.child("fname").getValue(String::class.java) ?: "Unknown"
-                    val teacherId = teacherSnapshot.child("teacherId").getValue(String::class.java) ?: "Unknown"
+                    val isActive = teacherSnapshot.child("active").getValue(Boolean::class.java) ?: false
+                    if (isActive) {
+                        val teacherUid = teacherSnapshot.key
+                        val teacherName =
+                            teacherSnapshot.child("fname").getValue(String::class.java) ?: "Unknown"
+                        val teacherId =
+                            teacherSnapshot.child("teacherId").getValue(String::class.java)
+                                ?: "Unknown"
 
-                    if (teacherUid != null) {
-                        // Add teacher details to the table
-                        addTeacherRow(teacherId, teacherName, teacherUid,)
+                        if (teacherUid != null) {
+                            // Add teacher details to the table
+                            addTeacherRow(teacherId, teacherName, teacherUid,)
+                        }
                     }
                 }
             }

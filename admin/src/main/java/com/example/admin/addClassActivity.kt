@@ -5,7 +5,11 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.admin.databinding.ActivityAddClassBinding
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class addClassActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
@@ -78,13 +82,16 @@ class addClassActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 teacherList.clear()
                 for (snapshot in dataSnapshot.children) {
-                    val teacherName = snapshot.child("fname").getValue(String::class.java)
-                    val teacherId = snapshot.child("teacherId").getValue(String::class.java)
-                    val teacherUid = snapshot.key ?: continue
-                    teacherName?.let {
-                        teacherId?.let { id ->
-                            val teacherInfo = Triple(teacherName, teacherId, teacherUid)
-                            teacherList.add(teacherInfo)
+                    val isActive = snapshot.child("active").getValue(Boolean::class.java) ?: false
+                    if (isActive) {
+                        val teacherName = snapshot.child("fname").getValue(String::class.java)
+                        val teacherId = snapshot.child("teacherId").getValue(String::class.java)
+                        val teacherUid = snapshot.key ?: continue
+                        teacherName?.let {
+                            teacherId?.let { id ->
+                                val teacherInfo = Triple(teacherName, teacherId, teacherUid)
+                                teacherList.add(teacherInfo)
+                            }
                         }
                     }
                 }
