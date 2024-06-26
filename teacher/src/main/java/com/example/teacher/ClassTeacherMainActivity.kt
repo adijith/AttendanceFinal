@@ -29,20 +29,21 @@ class ClassTeacherMainActivity : AppCompatActivity() {
             // No user is signed in
             Toast.makeText(this, "No user is logged in", Toast.LENGTH_SHORT).show()
         }
-        binding.addStudentButton.setOnClickListener {
-            val intent = Intent(this@ClassTeacherMainActivity, AddStudentActivity::class.java)
+        binding.studentOptionsButton.setOnClickListener {
+            val intent = Intent(this@ClassTeacherMainActivity, StudentOptionsActivity::class.java)
             startActivity(intent)
         }
         binding.attendanceMarkingButton.setOnClickListener {
             val intent = Intent(this@ClassTeacherMainActivity, AttenMarkActivity::class.java)
             startActivity(intent)
         }
-        binding.attendanceViewingButton.setOnClickListener {
-            val intent = Intent(this@ClassTeacherMainActivity, AttenViewActivity::class.java)
+        binding.attendanceOptionsButton.setOnClickListener {
+            val intent = Intent(this@ClassTeacherMainActivity, AttendanceOptionsActivity::class.java)
             startActivity(intent)
         }
-        binding.attendanceViewingButton2.setOnClickListener {
-            val intent = Intent(this@ClassTeacherMainActivity, SubAttenViewActivity::class.java)
+
+        binding.profileOptions.setOnClickListener {
+            val intent = Intent(this@ClassTeacherMainActivity, ProfileOptionsActivity::class.java)
             startActivity(intent)
         }
     binding.logout.setOnClickListener {

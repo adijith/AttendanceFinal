@@ -1,0 +1,103 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/rounded_border">
+
+    <!-- Personal Details heading -->
+    <TextView
+        android:id="@+id/textViewPersonalDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Personal Details"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:gravity="center"
+        android:background="@color/lilac"
+        android:textColor="@android:color/white"/>
+
+    <!-- Phone number field -->
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Enter your phone number" />
+
+    <!-- Qualification field -->
+    <EditText
+        android:id="@+id/editTextQualification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Qualification"
+        android:inputType="text"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Enter your qualification" />
+
+    <!-- Date of Birth field -->
+    <EditText
+        android:id="@+id/editTextDOB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date of Birth"
+        android:inputType="date"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Enter your date of birth" />
+
+    <!-- Gender selection -->
+    <RadioGroup
+        android:id="@+id/radioGroupGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Select your gender">
+
+        <RadioButton
+            android:id="@+id/radioButtonMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Male" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Female" />
+
+        <RadioButton
+            android:id="@+id/radioButtonOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other"
+            android:importantForAccessibility="yes"
+            android:contentDescription="Other" />
+    </RadioGroup>
+
+    <!-- Save button -->
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Save the details"/>
+</LinearLayout>

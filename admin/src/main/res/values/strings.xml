@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Admin</string>
     <string name="select_subject">Select Subject</string>
+    <string name="profile_icon_description">Profile Icon</string>
 </resources>

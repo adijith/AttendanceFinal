@@ -19,6 +19,17 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
+    <Button
+        android:id="@+id/profile_options"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Profile options"
+        android:layout_margin="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/attendance_marking_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:layout_editor_absoluteY="487dp" />
 
     <Button
         android:id="@+id/attendance_marking_button"
@@ -44,7 +55,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         tools:layout_editor_absoluteY="487dp" />
-
 
     <Button
         android:id="@+id/logout"

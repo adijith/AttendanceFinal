@@ -13,11 +13,20 @@
         android:exported="false" />
 
     <activity
-        android:name=".SubjectAllocationActivity"  android:exported="false"/>
-    <activity
-        android:name=".addClassActivity"  android:exported="false">
+        android:name=".SubjectAllocationActivity"
+        android:exported="false" />
 
-    </activity>
+    <activity
+        android:name=".addClassActivity"
+        android:exported="false" />
+
+    <activity
+        android:name=".ViewTeacherActivity"
+        android:exported="false" />
+
+    <activity
+        android:name=".ViewTeacherProfileActivity"
+        android:exported="false" />
 
     <activity
         android:name=".MainActivity"
@@ -31,3 +40,4 @@
 </application>
 
 </manifest>
+

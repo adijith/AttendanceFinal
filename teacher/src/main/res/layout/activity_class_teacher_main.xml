@@ -14,22 +14,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/add_student_button"
+        app:layout_constraintBottom_toTopOf="@+id/profile_options"
         app:srcCompat="@drawable/professor"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <Button
-        android:id="@+id/add_student_button"
+        android:id="@+id/profile_options"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add Student"
+        android:text="Profile options"
+        android:layout_margin="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/student_options_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:layout_editor_absoluteY="440dp" />
+
+    <Button
+        android:id="@+id/student_options_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Student options"
         android:layout_margin="12dp"
         app:layout_constraintBottom_toTopOf="@+id/attendance_marking_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        tools:layout_editor_absoluteY="440dp" />
+        tools:layout_editor_absoluteY="487dp" />
+
 
     <Button
         android:id="@+id/attendance_marking_button"
@@ -37,29 +50,17 @@
         android:layout_height="wrap_content"
         android:text="Attendance Marking"
         android:layout_margin="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/attendance_viewing_button"
+        app:layout_constraintBottom_toTopOf="@+id/attendance_options_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         tools:layout_editor_absoluteY="487dp" />
 
     <Button
-        android:id="@+id/attendance_viewing_button"
+        android:id="@+id/attendance_options_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="View Attendance"
-        android:layout_margin="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/attendance_viewing_button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        tools:layout_editor_absoluteY="487dp" />
-
-    <Button
-        android:id="@+id/attendance_viewing_button2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="View sub Attendance"
+        android:text="View Attendance options"
         android:layout_margin="12dp"
         app:layout_constraintBottom_toTopOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"

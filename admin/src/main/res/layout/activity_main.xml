@@ -53,6 +53,18 @@
         android:layout_height="wrap_content"
         android:text="Add teacher"
         android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/View_teacher"  app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:layout_editor_absoluteY="487dp"
+        android:layout_margin="12dp"
+        />
+    <Button
+        android:id="@+id/View_teacher"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="View Teacher"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/logout"  app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

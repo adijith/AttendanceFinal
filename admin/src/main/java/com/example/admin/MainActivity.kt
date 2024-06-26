@@ -43,5 +43,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, addClassActivity::class.java)
             startActivity(intent)
         }
+        binding.ViewTeacher.setOnClickListener {
+            val intent = Intent(this@MainActivity, ViewTeacherActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

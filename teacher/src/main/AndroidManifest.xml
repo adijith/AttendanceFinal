@@ -29,6 +29,34 @@
             android:exported="false"
             android:theme="@style/Theme.AttendanceFinal" />
         <activity
+            android:name=".TeacherDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
+            android:name=".TeacherProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
+            android:name=".ProfileOptionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
+            android:name=".StudentOptionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
+            android:name=".AttendanceOptionsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
+            android:name=".ViewStudentsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
+            android:name=".StudentProfiletActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
             android:name=".ClassTeacherMainActivity"
             android:exported="true">
             <intent-filter>

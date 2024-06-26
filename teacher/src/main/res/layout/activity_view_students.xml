@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Dynamic Heading for the Class -->
+    <TextView
+        android:id="@+id/textViewClassHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Class Students"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="@color/teal_700"
+        android:textColor="@android:color/white"
+        android:padding="8dp" />
+
+    <!-- TableLayout to Display Student Details -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbars="vertical">
+
+        <TableLayout
+            android:id="@+id/tableLayoutStudents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <!-- Table Header -->
+            <TableRow
+                android:background="@color/teal_200">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Roll Number"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+
+            <!-- Student Details Rows will be added dynamically in ViewStudentsActivity -->
+
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>
