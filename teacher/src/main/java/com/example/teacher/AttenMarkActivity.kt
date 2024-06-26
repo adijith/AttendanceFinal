@@ -261,10 +261,12 @@ private fun fetchStudentNames(studentUids: List<String>, callback: (List<Student
     for (uid in studentUids) {
         studentsRef.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(studentSnapshot: DataSnapshot) {
-
+                val isActive = studentSnapshot.child("active").getValue(Boolean::class.java) ?: false
+                if (isActive) {
                     val studentName = studentSnapshot.child("name").value?.toString() ?: "Unknown Name"
                     val roleNumber = studentSnapshot.child("studentId").value?.toString() ?: "Unknown Role Number"
                     studentInfoList.add(StudentInfo(uid, roleNumber, studentName))
+                }
                 processedCount++
 
                 if (processedCount == studentUids.size) {

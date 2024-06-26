@@ -133,6 +133,35 @@ class ViewStudentsActivity : AppCompatActivity() {
         }
         tableRow.addView(buttonViewProfile)
 
+        val buttonDeleteProfile = Button(this)
+        buttonDeleteProfile.text = "Deactivate Teacher"
+        buttonDeleteProfile.setPadding(16, 16, 16, 16)
+        buttonDeleteProfile.setOnClickListener {
+            // Firebase reference to the teacher's node
+            val database = FirebaseDatabase.getInstance()
+            val teacherRef = database.getReference("Students").child(studentId)
+
+            // Set the `active` status to false
+            teacherRef.child("active").setValue(false).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Successful update
+                    Log.d("DeactivateTeacher", "Teacher deactivated successfully.")
+
+                    // Navigate to ViewTeacherActivity
+                    val intent = Intent(this, ViewStudentsActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish() // Close the current activity
+                } else {
+                    // Failed to update
+                    Log.e("DeactivateTeacher", "Failed to deactivate teacher: ${task.exception?.message}")
+                    // Optionally, you can show a Toast or an alert dialog here to inform the user.
+                    Toast.makeText(this, "Failed to deactivate teacher", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        tableRow.addView(buttonDeleteProfile)
+
         // Add the row to the table
         binding.tableLayoutStudents.addView(tableRow)
     }
