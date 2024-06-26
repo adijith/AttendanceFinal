@@ -8,7 +8,11 @@
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
         <option name="RES_FOLDERS_RELATIVE_PATH" value="" />
+<<<<<<<< HEAD:.idea/modules/teacher/AttendanceFinal.teacher.androidTest.iml
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../teacher/src/androidTest/res;file://$MODULE_DIR$/../../../teacher/src/androidTestDebug/res;file://$MODULE_DIR$/../../../teacher/build/generated/res/resValues/androidTest/debug" />
+========
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../admin/src/androidTest/res;file://$MODULE_DIR$/../../../admin/src/androidTestDebug/res;file://$MODULE_DIR$/../../../admin/build/generated/res/resValues/androidTest/debug" />
+>>>>>>>> origin/master:.idea/modules/admin/AttendanceFinal.admin.androidTest.iml
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
         <option name="PROJECT_TYPE" value="1" />
       </configuration>
@@ -41,6 +45,7 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output-test url="file://$MODULE_DIR$/../../../teacher/build/intermediates/javac/debugAndroidTest/compileDebugAndroidTestJavaWithJavac/classes" />
     <exclude-output />
+<<<<<<<< HEAD:.idea/modules/teacher/AttendanceFinal.teacher.androidTest.iml
     <content url="file://$MODULE_DIR$/../../../teacher/build/generated/ap_generated_sources/debugAndroidTest/out" />
     <content url="file://$MODULE_DIR$/../../../teacher/build/generated/res/resValues/androidTest/debug">
       <sourceFolder url="file://$MODULE_DIR$/../../../teacher/build/generated/res/resValues/androidTest/debug" type="java-test-resource" />
@@ -49,6 +54,14 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../teacher/src/androidTest/java" isTestSource="true" />
     </content>
     <content url="file://$MODULE_DIR$/../../../teacher/src/androidTestDebug" />
+========
+    <content url="file://$MODULE_DIR$/../../../admin/build/generated/ap_generated_sources/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../admin/build/generated/res/resValues/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../admin/src/androidTest">
+      <sourceFolder url="file://$MODULE_DIR$/../../../admin/src/androidTest/java" isTestSource="true" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../admin/src/androidTestDebug" />
+>>>>>>>> origin/master:.idea/modules/admin/AttendanceFinal.admin.androidTest.iml
     <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="AttendanceFinal.teacher.main" scope="TEST" />

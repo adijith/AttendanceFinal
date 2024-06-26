@@ -1,5 +1,6 @@
 package com.example.teacher
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -97,25 +98,32 @@ class AttenMarkActivity : AppCompatActivity() {
                                 val roleNumberTextView = TextView(this@AttenMarkActivity)
                                 roleNumberTextView.text = studentInfo.roleNumber
                                 roleNumberTextView.setPadding(8, 8, 8, 8)
+                                roleNumberTextView.setTextColor(Color.WHITE)
 
                                 // Create TextView for Student Name
                                 val studentNameTextView = TextView(this@AttenMarkActivity)
                                 studentNameTextView.text = studentInfo.name
                                 studentNameTextView.setPadding(8, 8, 8, 8)
+                                studentNameTextView.setTextColor(Color.WHITE)
+
 
                                 // Create RadioGroup for attendance status
                                 val radioGroup = RadioGroup(this@AttenMarkActivity)
                                 radioGroup.orientation = RadioGroup.HORIZONTAL
 
+
                                 // Create RadioButton for Present
                                 val radioButtonPresent = RadioButton(this@AttenMarkActivity)
                                 radioButtonPresent.id = generateUniqueId() // Generate a unique ID
                                 radioButtonPresent.text = "Present"
+                                radioButtonPresent.setTextColor(Color.WHITE)
+
 
                                 // Create RadioButton for Absent
                                 val radioButtonAbsent = RadioButton(this@AttenMarkActivity)
                                 radioButtonAbsent.id = generateUniqueId() // Generate a unique ID
                                 radioButtonAbsent.text = "Absent"
+                                radioButtonAbsent.setTextColor(Color.WHITE)
 
                                 // Set initial selection to "Absent"
                                 radioButtonAbsent.isChecked = true
@@ -238,7 +246,7 @@ class AttenMarkActivity : AppCompatActivity() {
     }
     private fun populateSpinner(subjectInfoList: List<Pair<String, String>>) {
         val adapter = ArrayAdapter<Pair<String, String>>(this@AttenMarkActivity,
-            android.R.layout.simple_spinner_item,
+            R.layout.spinner_item,
             subjectInfoList
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

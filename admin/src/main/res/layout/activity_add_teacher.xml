@@ -101,6 +101,7 @@ android:layout_marginTop="30dp"
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Already have an account"
             android:id="@+id/go_to_login_btn"/>
 
