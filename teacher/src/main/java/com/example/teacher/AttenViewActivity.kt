@@ -22,7 +22,7 @@ data class StudentAttendance(
 
 class AttenViewActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAttenV
+    private lateinit var binding: ActivityAttenViewBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -240,7 +240,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = "Roll Number"
             setTextStyle(this)
             setWeight(this, 1f)
-            setTextColor(Color.WHITE)
+            setTextColor(Color.BLACK)
         }
         headerRow.addView(rollNumberTextView)
 
@@ -249,7 +249,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = "Student Name"
             setTextStyle(this)
             setWeight(this, 2f)
-            setTextColor(Color.WHITE)
+            setTextColor(Color.BLACK)
         }
         headerRow.addView(nameTextView)
 
@@ -258,19 +258,16 @@ class AttenViewActivity : AppCompatActivity() {
             text = "Overall Attendance %"
             setTextStyle(this)
             setWeight(this, 1f)
-            setTextColor(Color.WHITE)
+            setTextColor(Color.BLACK)
         }
         headerRow.addView(overallAttendanceTextView)
 
-        // Subject-wise Attendance Percentages
         for ((_, subjectName) in subjectMap) {
             val subjectTextView = TextView(this).apply {
                 text = subjectName
                 setTextStyle(this)
                 setWeight(this, 1f)
-                setTextColor(Color.WHITE)
-
-
+                setTextColor(Color.BLACK)
             }
             headerRow.addView(subjectTextView)
         }
@@ -298,7 +295,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = studentAttendance.studentInfo.roleNumber
             setTextStyle(this)
             setWeight(this, 1f)
-            setTextColor(Color.WHITE)
+            setTextColor(Color.BLACK)
 
         }
         row.addView(rollNumberTextView)
@@ -308,7 +305,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = studentAttendance.studentInfo.name
             setTextStyle(this)
             setWeight(this, 2f)
-            setTextColor(Color.WHITE)
+            setTextColor(Color.BLACK)
 
         }
         row.addView(nameTextView)
@@ -318,7 +315,7 @@ class AttenViewActivity : AppCompatActivity() {
             text = "%.2f%%".format(studentAttendance.attendancePercentage)
             setTextStyle(this)
             setWeight(this, 1f)
-            setTextColor(Color.WHITE)
+            setTextColor(Color.BLACK)
 
         }
         row.addView(overallAttendanceTextView)
@@ -331,25 +328,19 @@ class AttenViewActivity : AppCompatActivity() {
                 text = "%.2f%%".format(subjectAttendance)
                 setTextStyle(this)
                 setWeight(this, 1f)
-                setTextColor(Color.WHITE)
-
+                setTextColor(Color.BLACK)
             }
             row.addView(subjectAttendanceTextView)
         }
 
-        // Add the row to the table layout
         tableLayout.addView(row)
     }
 
     private fun setTextStyle(textView: TextView) {
-        textView.apply {
-            textSize = 16f
-            setPadding(8, 8, 8, 8)
-            setTextColor(Color.WHITE)
-            setTextAppearance(android.R.style.TextAppearance_Material_Body1)
-            gravity = android.view.Gravity.CENTER
-        }
+        textView.textSize = 16f
+        textView.setPadding(8, 8, 8, 8)
     }
+
 
     private fun setWeight(textView: TextView, weight: Float) {
         textView.layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, weight)
