@@ -48,7 +48,19 @@
         android:id="@+id/attendance_viewing_button2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="View sub Attendance"
+        android:text="View Attendance"
+        android:layout_margin="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/attendance_edit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        tools:layout_editor_absoluteY="487dp" />
+
+    <Button
+        android:id="@+id/attendance_edit_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Edit Attendance"
         android:layout_margin="12dp"
         app:layout_constraintBottom_toTopOf="@+id/logout"
         app:layout_constraintEnd_toEndOf="parent"

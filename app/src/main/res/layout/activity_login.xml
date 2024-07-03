@@ -46,13 +46,6 @@
             android:layout_marginTop="16dp"
             android:text="Login" />
 
-        <!-- Optional: Sign Up/Registration Link -->
-        <Button
-            android:id="@+id/signUpText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Create an account" />
 
     </LinearLayout>
 </RelativeLayout>

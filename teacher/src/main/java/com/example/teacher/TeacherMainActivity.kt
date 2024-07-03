@@ -31,6 +31,10 @@ class TeacherMainActivity : AppCompatActivity() {
             val intent = Intent(this@TeacherMainActivity, ProfileOptionsActivity::class.java)
             startActivity(intent)
         }
+        binding.attendanceEditButton.setOnClickListener {
+            val intent = Intent(this@TeacherMainActivity, EditAttendanceActivity::class.java)
+            startActivity(intent)
+        }
         binding.logout.setOnClickListener {
             firebaseAuth.signOut()
 

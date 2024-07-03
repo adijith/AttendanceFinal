@@ -151,7 +151,7 @@ class AttenMarkActivity : AppCompatActivity() {
             binding.submitAttendanceButton.setOnClickListener {
                 val currentDate = getCurrentDate()
                 val selectedSubject = classSpinner.selectedItem as Pair<String, String>
-                val subjectId = selectedSubject.second
+                val subjectId = selectedSubject.second // Extract the subject ID
                 val yearNode = subjectId.split("-").take(2).joinToString("-")
 
                 val selectedPeriod = when (binding.PeriodRadioGroup.checkedRadioButtonId) {
@@ -167,7 +167,6 @@ class AttenMarkActivity : AppCompatActivity() {
                 val dateWithPeriod = "$currentDate-$selectedPeriod"
 
                 val database = FirebaseDatabase.getInstance()
-
 
                 // Check if the dateWithPeriod already exists in the schedule node
                 val scheduleRef = database.getReference("Schedule").child(yearNode)
@@ -189,31 +188,40 @@ class AttenMarkActivity : AppCompatActivity() {
                                     // Add the current dateWithPeriod to the schedule
                                     scheduleRef.child(dateWithPeriod).setValue(teacherId)
                                         .addOnSuccessListener {
+                                            // After successfully adding the teacherId, add the subjectId and teacherId as child nodes
+                                            val dateNodeRef = scheduleRef.child(dateWithPeriod)
+                                            dateNodeRef.child("subjectId").setValue(subjectId)
+                                            dateNodeRef.child("teacherId").setValue(teacherId)
+                                                .addOnSuccessListener {
+                                                    // Subject ID successfully added, proceed with updating attendance
+                                                    for (i in 1 until binding.studentsTableLayout.childCount) {
+                                                        val row = binding.studentsTableLayout.getChildAt(i) as TableRow
+                                                        val (studentInfo, radioGroup) = row.tag as Pair<StudentInfo, RadioGroup>
 
-                                            // Iterate through each row of the table to get attendance status for each student
-                                            for (i in 1 until binding.studentsTableLayout.childCount) {
-                                                val row = binding.studentsTableLayout.getChildAt(i) as TableRow
-                                                val (studentInfo, radioGroup) = row.tag as Pair<StudentInfo, RadioGroup>
+                                                        val attendanceStatus = when (radioGroup.checkedRadioButtonId) {
+                                                            radioGroup.getChildAt(0).id -> "Present"
+                                                            radioGroup.getChildAt(1).id -> "Absent"
+                                                            else -> "Absent"
+                                                        }
 
-                                                val attendanceStatus = when (radioGroup.checkedRadioButtonId) {
-                                                    radioGroup.getChildAt(0).id -> "Present"
-                                                    radioGroup.getChildAt(1).id -> "Absent"
-                                                    else -> "Absent"
+                                                        // Update the attendance data in Firebase under the student's UID
+                                                        val studentAttendanceRef = database.getReference("attendance").child(yearNode)
+                                                            .child(studentInfo.uid).child(subjectId).child(dateWithPeriod)
+                                                        studentAttendanceRef.setValue(attendanceStatus)
+                                                            .addOnSuccessListener {
+                                                                Log.d("AttenMarkActivity", "Attendance for ${studentInfo.name} updated successfully")
+                                                            }
+                                                            .addOnFailureListener { error ->
+                                                                Log.e("AttenMarkActivity", "Failed to update attendance for ${studentInfo.name}: ${error.message}")
+                                                            }
+                                                    }
+
+                                                    Toast.makeText(this@AttenMarkActivity, "Attendance saved successfully", Toast.LENGTH_SHORT).show()
                                                 }
-
-                                                // Update the attendance data in Firebase under the student's UID
-                                                val studentAttendanceRef = database.getReference("attendance").child(yearNode)
-                                                    .child(studentInfo.uid).child(subjectId).child(dateWithPeriod)
-                                                studentAttendanceRef.setValue(attendanceStatus)
-                                                    .addOnSuccessListener {
-                                                        Log.d("AttenMarkActivity", "Attendance for ${studentInfo.name} updated successfully")
-                                                    }
-                                                    .addOnFailureListener { error ->
-                                                        Log.e("AttenMarkActivity", "Failed to update attendance for ${studentInfo.name}: ${error.message}")
-                                                    }
-                                            }
-
-                                            Toast.makeText(this@AttenMarkActivity, "Attendance saved successfully", Toast.LENGTH_SHORT).show()
+                                                .addOnFailureListener { error ->
+                                                    Log.e("AttenMarkActivity", "Failed to add subjectId to schedule: ${error.message}")
+                                                    Toast.makeText(this@AttenMarkActivity, "Failed to add subjectId to schedule: ${error.message}", Toast.LENGTH_SHORT).show()
+                                                }
                                         }
                                         .addOnFailureListener { error ->
                                             Log.e("AttenMarkActivity", "Failed to update schedule: ${error.message}")
@@ -237,6 +245,7 @@ class AttenMarkActivity : AppCompatActivity() {
                     }
                 })
             }
+
         }
     }
     private fun populateSpinner(subjectInfoList: List<Pair<String, String>>) {

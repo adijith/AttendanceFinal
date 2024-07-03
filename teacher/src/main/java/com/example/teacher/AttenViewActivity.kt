@@ -323,11 +323,11 @@ class AttenViewActivity : AppCompatActivity() {
         row.addView(overallAttendanceTextView)
 
         // Subject-wise Attendance Percentages
-        for ((subjectId, _) in subjectMap) {
-            val subjectAttendance = studentAttendance.subjectAttendance[subjectId] ?: 0.0
+        for ((subjectId, subjectName) in subjectMap) {
+            val subjectAttendance = studentAttendance.subjectAttendance[subjectName] ?: 0.0
 
             val subjectAttendanceTextView = TextView(this).apply {
-                text = subjectAttendance?.let { "%.2f%%".format(it) } ?: "0.00%"
+                text = "%.2f%%".format(subjectAttendance)
                 setTextStyle(this)
                 setWeight(this, 1f)
                 setTextColor(Color.BLACK)
