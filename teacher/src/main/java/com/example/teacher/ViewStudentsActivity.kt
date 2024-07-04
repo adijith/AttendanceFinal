@@ -134,7 +134,7 @@ class ViewStudentsActivity : AppCompatActivity() {
         tableRow.addView(buttonViewProfile)
 
         val buttonDeleteProfile = Button(this)
-        buttonDeleteProfile.text = "Deactivate Teacher"
+        buttonDeleteProfile.text = "Deactivate Student"
         buttonDeleteProfile.setPadding(16, 16, 16, 16)
         buttonDeleteProfile.setOnClickListener {
             // Firebase reference to the teacher's node
@@ -145,7 +145,7 @@ class ViewStudentsActivity : AppCompatActivity() {
             teacherRef.child("active").setValue(false).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Successful update
-                    Log.d("DeactivateTeacher", "Teacher deactivated successfully.")
+                    Log.d("DeactivateStudent", "Student deactivated successfully.")
 
                     // Navigate to ViewTeacherActivity
                     val intent = Intent(this, ViewStudentsActivity::class.java)

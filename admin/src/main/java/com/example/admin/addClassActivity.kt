@@ -49,7 +49,7 @@ class addClassActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(
                             this@addClassActivity,
-                            "Subject added successfully",
+                            "Class added successfully",
                             Toast.LENGTH_SHORT
                         ).show()
                         // Clear the EditText after submitting
@@ -58,14 +58,14 @@ class addClassActivity : AppCompatActivity() {
                     .addOnFailureListener { e ->
                         Toast.makeText(
                             this@addClassActivity,
-                            "Failed to add subject: ${e.message}",
+                            "Failed to add Class: ${e.message}",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
             } else {
                 Toast.makeText(
                     this@addClassActivity,
-                    "Please enter a subject",
+                    "Please enter a Class",
                     Toast.LENGTH_SHORT
                 ).show()
             }

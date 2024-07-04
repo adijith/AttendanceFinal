@@ -1,23 +1,21 @@
 package com.example.teacher
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.data.UserRole
 import com.example.teacher.databinding.ActivityAddStudentBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class AddStudentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddStudentBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var studentReference: DatabaseReference
-    private lateinit var userRoleReference: DatabaseReference
     private lateinit var progressBar: ProgressBar
     private lateinit var tclass: String
 
@@ -27,7 +25,6 @@ class AddStudentActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        userRoleReference = FirebaseDatabase.getInstance().getReference("UserRoles")
         progressBar = binding.progressBar
 
         val teacherUid = firebaseAuth.currentUser!!.uid
@@ -41,17 +38,7 @@ class AddStudentActivity : AppCompatActivity() {
                     Log.e("AddStudentActivity", "No class found for teacher $teacherUid.")
                 }
             }.addOnFailureListener { exception ->
-                progressBar.visibility = ProgressBar.GONE
-                Log.e(
-                    "AddStudentActivity",
-                    "Failed to get tclass role: ${exception.message}",
-                    exception
-                )
-                Toast.makeText(
-                    this,
-                    "Failed to add tclass role: ${exception.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleFailure("Failed to get tclass", exception)
             }
 
         binding.submitBtnStudent.setOnClickListener {
@@ -62,131 +49,134 @@ class AddStudentActivity : AppCompatActivity() {
 
             if (studentId.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && tclass.isNotEmpty()) {
                 progressBar.visibility = ProgressBar.VISIBLE
-
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            val user = firebaseAuth.currentUser
-                            val student = Student(studentId, user?.email ?: "", name, tclass)
-
-                            val studentReference =
-                                FirebaseDatabase.getInstance().getReference("Students").child(user?.uid ?: "")
-                            studentReference.setValue(student)
-                                .addOnSuccessListener {
-                                    val userRole = UserRole("Student")
-                                    val userRoleReference =
-                                        FirebaseDatabase.getInstance().getReference("UserRoles")
-                                    userRoleReference.child(user?.uid ?: "")
-                                        .setValue(userRole)
-                                        .addOnSuccessListener {
-                                            handleAttendance(user!!, tclass)
-                                        }
-                                        .addOnFailureListener { exception ->
-                                            progressBar.visibility = ProgressBar.GONE
-                                            Toast.makeText(
-                                                this,
-                                                "Failed to save Student role: ${exception.message}",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            Log.e(
-                                                "AddStudentActivity",
-                                                "Failed to save Student role",
-                                                exception
-                                            )
-                                        }
-                                }
-                                .addOnFailureListener { exception ->
-                                    progressBar.visibility = ProgressBar.GONE
-                                    Toast.makeText(
-                                        this,
-                                        "Failed to add student ${user?.uid}: ${exception.message}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    Log.e(
-                                        "AddStudentActivity",
-                                        "Failed to add student ${user?.uid}: ${exception.message}"
-                                    )
-                                }
-                        } else {
-                            progressBar.visibility = ProgressBar.GONE
-                            Toast.makeText(
-                                this,
-                                "Authentication failed: ${task.exception?.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+                addStudent(studentId, email, password, name)
             } else {
-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter all required fields", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun handleAttendance(user: FirebaseUser, tclass: String) {
-        val attendanceReference =
-            FirebaseDatabase.getInstance().getReference("attendance").child(tclass)
-        attendanceReference.child(user.uid).setValue(true).addOnSuccessListener {
-            Log.d("AddStudentActivity", "Attendance added for user: ${user.uid}")
-            val subjectsReference =
-                FirebaseDatabase.getInstance().getReference("Subjects").child(tclass)
+    private fun addStudent(studentId: String, email: String, password: String, name: String) {
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val studentUser = task.result?.user
+                    if (studentUser != null) {
+                        val student = Student(studentId, email, name, tclass)
+                        saveStudentData(studentUser.uid, student)
+                    } else {
+                        handleFailure("Failed to create student account", null)
+                    }
+                } else {
+                    handleFailure("Authentication failed", task.exception)
+                }
+            }
+    }
+
+    private fun saveStudentData(studentUid: String, student: Student) {
+        val studentReference = FirebaseDatabase.getInstance().getReference("Students").child(studentUid)
+        studentReference.setValue(student)
+            .addOnSuccessListener {
+                val userRole = UserRole("Student")
+                val userRoleReference = FirebaseDatabase.getInstance().getReference("UserRoles")
+                userRoleReference.child(studentUid).setValue(userRole)
+                    .addOnSuccessListener {
+                        handleAttendance(studentUid, tclass)
+                    }
+                    .addOnFailureListener { exception ->
+                        handleFailure("Failed to save Student role", exception)
+                    }
+            }
+            .addOnFailureListener { exception ->
+                handleFailure("Failed to add student to database", exception)
+            }
+    }
+
+    private fun handleAttendance(studentUid: String, tclass: String) {
+        val attendanceReference = FirebaseDatabase.getInstance().getReference("attendance").child(tclass)
+        attendanceReference.child(studentUid).setValue(true).addOnSuccessListener {
+            Log.d("AddStudentActivity", "Attendance added for user: $studentUid")
+            val subjectsReference = FirebaseDatabase.getInstance().getReference("Subjects").child(tclass)
             subjectsReference.get().addOnSuccessListener { subjectsSnapshot ->
                 Log.d("AddStudentActivity", "Subjects Snapshot: $subjectsSnapshot")
-                for (subjectSnapshot in subjectsSnapshot.children) {
-                    val subjectId = subjectSnapshot.key
-                    subjectId?.let { id ->
-                        attendanceReference.child(user.uid).child(id).setValue(true)
-                            .addOnSuccessListener {
-                                progressBar.visibility = ProgressBar.GONE
-                                binding.studentId.text.clear()  // Clear teacher ID textbox
-                                binding.emailInputS.text.clear()
-                                binding.studentPass.text.clear()
-                                binding.studentName.text.clear()
-                                Toast.makeText(this, "Teacher saved successfully", Toast.LENGTH_SHORT)
-                                    .show()
-                                val intent = Intent(this@AddStudentActivity, ClassTeacherMainActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                            .addOnFailureListener { exception ->
-                                progressBar.visibility = ProgressBar.GONE
-                                Log.e(
-                                    "AddStudentActivity",
-                                    "Failed to save Student ",
-                                    exception
-                                )
-                                Toast.makeText(
-                                    this,
-                                    "Failed to save Student role: ${exception.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                if (subjectsSnapshot.hasChildren()) {
+                    for (subjectSnapshot in subjectsSnapshot.children) {
+                        val subjectId = subjectSnapshot.key
+                        subjectId?.let { id ->
+                            attendanceReference.child(studentUid).child(id).setValue(true)
+                                .addOnSuccessListener {
+                                    Log.d("AddStudentActivity", "Subject attendance added for: $id")
+                                }
+                                .addOnFailureListener { exception ->
+                                    Log.e("AddStudentActivity", "Failed to add subject attendance for: $id", exception)
+                                }
+                        }
                     }
+                } else {
+                    Log.d("AddStudentActivity", "No subjects found for class: $tclass")
                 }
+                finishStudentAddition()
             }.addOnFailureListener { exception ->
-                progressBar.visibility = ProgressBar.GONE
-                Log.e(
-                    "AddStudentActivity",
-                    "Failed to save Student subject: ${exception.message}",
-                    exception
-                )
-                Toast.makeText(
-                    this,
-                    "Failed to save Student role: ${exception.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleFailure("Failed to fetch subjects", exception)
             }
         }.addOnFailureListener { exception ->
-            progressBar.visibility = ProgressBar.GONE
-            Log.e(
-                "AddStudentActivity",
-                "Failed to add attendance role: ${exception.message}",
-                exception
-            )
-            Toast.makeText(
-                this,
-                "Failed to save Student role: ${exception.message}",
-                Toast.LENGTH_SHORT
-            ).show()
+            handleFailure("Failed to add attendance", exception)
         }
+    }
+
+    private fun finishStudentAddition() {
+        progressBar.visibility = ProgressBar.GONE
+        showTeacherAuthDialog(binding.studentName.text.toString())
+    }
+
+    private fun showTeacherAuthDialog(studentName: String) {
+        val builder = AlertDialog.Builder(this)
+        val inflater = LayoutInflater.from(this)
+        val dialogView = inflater.inflate(R.layout.dialog_teacher_auth, null)
+
+        val emailEditText = dialogView.findViewById<EditText>(R.id.teacherEmailEditText)
+        val passwordEditText = dialogView.findViewById<EditText>(R.id.teacherPasswordEditText)
+
+        builder.setView(dialogView)
+            .setTitle("Re-authenticate to add \"$studentName\"")
+            .setPositiveButton("Authenticate") { _, _ ->
+                val email = emailEditText.text.toString()
+                val password = passwordEditText.text.toString()
+                authenticateTeacher(email, password)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.cancel()
+                finish() // Return to previous activity if cancelled
+            }
+
+        builder.create().show()
+    }
+
+    private fun authenticateTeacher(email: String, password: String) {
+        progressBar.visibility = ProgressBar.VISIBLE
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                progressBar.visibility = ProgressBar.GONE
+                if (task.isSuccessful) {
+                    clearForm()
+                    Toast.makeText(this, "Re-authenticated successfully. You can add another student.", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    finish() // Return to previous activity if authentication fails
+                }
+            }
+    }
+
+    private fun clearForm() {
+        binding.studentId.text.clear()
+        binding.emailInputS.text.clear()
+        binding.studentPass.text.clear()
+        binding.studentName.text.clear()
+    }
+
+    private fun handleFailure(message: String, exception: Exception?) {
+        progressBar.visibility = ProgressBar.GONE
+        Log.e("AddStudentActivity", "$message: ${exception?.message}", exception)
+        Toast.makeText(this, "$message: ${exception?.message}", Toast.LENGTH_SHORT).show()
     }
 }

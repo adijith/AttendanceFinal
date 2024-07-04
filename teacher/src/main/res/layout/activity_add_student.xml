@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:hint="Password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:padding="13dp"

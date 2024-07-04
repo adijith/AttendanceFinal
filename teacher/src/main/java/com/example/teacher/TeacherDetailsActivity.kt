@@ -53,12 +53,12 @@ class TeacherDetailsActivity : AppCompatActivity() {
             teacherRef.child("gender").setValue(gender)
                 .addOnSuccessListener {
                     // Data successfully saved
-                    Toast.makeText(this@TeacherDetailsActivity, "Student information saved successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@TeacherDetailsActivity, "Teacher information saved successfully!", Toast.LENGTH_SHORT).show()
                     finish() // Close this activity after successful save
                 }
                 .addOnFailureListener {
                     // Handle error saving data
-                    Toast.makeText(this@TeacherDetailsActivity, "Failed to save student information. Please try again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@TeacherDetailsActivity, "Failed to save teacher information. Please try again.", Toast.LENGTH_SHORT).show()
                 }
         }
     }
