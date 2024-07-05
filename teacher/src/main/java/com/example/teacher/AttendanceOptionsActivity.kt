@@ -26,5 +26,10 @@ class AttendanceOptionsActivity : AppCompatActivity() {
             val intent = Intent(this@AttendanceOptionsActivity, SubAttenViewActivity::class.java)
             startActivity(intent)
         }
+
+        binding.attendanceEditButton.setOnClickListener {
+            val intent = Intent(this@AttendanceOptionsActivity, AttenEditActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

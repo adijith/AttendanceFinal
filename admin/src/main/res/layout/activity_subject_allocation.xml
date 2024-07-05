@@ -38,7 +38,7 @@
             android:layout_marginTop="20dp"
             android:maxLines="1"
             android:inputType="text"
-            android:hint="Enter Subject Id"
+            android:hint="Enter Subject Id(eg.IT-2021-123)"
             android:background="@drawable/rounded_corner"
             android:padding="6dp"
 

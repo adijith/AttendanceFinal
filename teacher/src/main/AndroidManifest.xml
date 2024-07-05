@@ -61,6 +61,10 @@
             android:exported="false"
             android:theme="@style/Theme.AttendanceFinal" />
         <activity
+            android:name=".AttenEditActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AttendanceFinal" />
+        <activity
             android:name=".ClassTeacherMainActivity"
             android:exported="true">
             <intent-filter>

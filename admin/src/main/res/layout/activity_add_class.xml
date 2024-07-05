@@ -41,7 +41,7 @@
         android:id="@+id/addClass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Enter Class (e.g. IT2025)"
+        android:hint="Enter Class (e.g. IT-2025)"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:padding="12dp"
